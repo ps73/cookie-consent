@@ -6,7 +6,7 @@ import type {
   SavedObj,
   UsedCats,
 } from '@/types/settings';
-import { activatedCats, activatedCoks, cookies, openPanel, setAcCok, store } from '@/store';
+import { activatedCats, cookies, openPanel, setAcCok, store } from '@/store';
 import debug from '@/utils/debug';
 
 type SaveParams = {
