@@ -1,0 +1,52 @@
+{
+  "name": "cookie-consent",
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "lint:staged": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --cache",
+    "git-hooks:commit-msg": "commitlint --edit",
+    "git-hooks:pre-commit": "lint-staged",
+    "prepare": "husky install"
+  },
+  "exports": {
+    "import": "./dist/cookieconsent.es.js",
+    "require": "./dist/cookieconsent.umd.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ps73/cookie-consent.git"
+  },
+  "dependencies": {
+    "@nanostores/preact": "^0.1.2",
+    "js-cookie": "^3.0.1",
+    "nanostores": "^0.5.6",
+    "preact": "^10.5.13"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^15.0.0",
+    "@commitlint/config-conventional": "^15.0.0",
+    "@preact/preset-vite": "^2.0.0",
+    "@types/js-cookie": "^3.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.3.1",
+    "@typescript-eslint/parser": "^5.3.1",
+    "autoprefixer": "^10.4.0",
+    "eslint": "^7.32.0",
+    "eslint-config-preact": "^1.2.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.0.2",
+    "path": "^0.12.7",
+    "postcss": "^8.3.11",
+    "postcss-nested": "^5.0.6",
+    "postcss-simple-vars": "^6.0.3",
+    "prettier": "^2.4.1",
+    "rollup-plugin-visualizer": "^5.5.2",
+    "typescript": "^4.3.2",
+    "vite": "^2.6.4"
+  }
+}

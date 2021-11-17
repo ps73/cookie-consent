@@ -1,0 +1,15 @@
+node_modules
+.vscode
+.vscode.tmpl
+.husky
+.dev
+.browserlistrc
+.eslintignore
+.eslintrc.js
+.gitignore
+.nvmrc
+.prettierrc
+vite.config.js
+settings.json
+index.html
+postcss.config.js

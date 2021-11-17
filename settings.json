@@ -1,0 +1,94 @@
+{
+  "id": "c81723892",
+  "categories": {
+    "Functional": "Erforderlich",
+    "Analytics": "Statistiken",
+    "Marketing": "Marketing",
+    "Preferences": "Funktional"
+  },
+  "content": {
+    "title": "Cookie Einstellungen",
+    "paragraph": "Diese Seite nutzt Website-Tracking-Technologien von Dritten, um ihre Dienste anzubieten und diese stetig zu verbessern.",
+    "categories": "Kategorien",
+    "services": "Services",
+    "links": [["Impressum", "https://jp-labs.de/impressum"], ["Datenschutzerklärung", "https://jp-labs.de/datenschutz"]],
+    "more": "Mehr anzeigen",
+    "save": "Einstellungen speichern",
+    "disallow": "Ablehnen",
+    "allow": "Alles akzeptieren",
+    "cookies": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "retention": "Speicherdauer",
+      "dataController": "Verarbeitendes Unternehmen",
+      "domain": "Domain",
+      "privacySettings": "Datenschutz/Einstellungen",
+      "notAvailable": "Keine Angabe"
+    }
+  },
+  "layout": {
+    "position": "br",
+    "hideScroll": false,
+    "sameButtonColor": false
+  },
+  "cookies": [
+    {
+      "id": "256c18e8-d881-11e9-8a34-2a2ae2dbcce8",
+      "name": "Cookie Consent Settings",
+      "category": "Functional",
+      "cookieName": "cc_settings",
+      "domain": "this website",
+      "description": "Settings to inject cookies automatically after revisit until cookies were changed",
+      "retentionPeriod": "1 year"
+    },
+    {
+      "id": "256c18e8-d881-11e9-8a34-2a2ae2dbcce4",
+      "name": "Google Analytics",
+      "category": "Analytics",
+      "cookieName": "_ga",
+      "domain": "google-analytics.com (3rd party) or advertiser's website domain (1st party)",
+      "description": "ID used to identify users",
+      "retentionPeriod": "2 years",
+      "dataController": "Google",
+      "privacy": "https://privacy.google.com/take-control.html",
+      "wildcardMatch": 0
+    },
+    {
+      "id": "256c1ae6-d881-11e9-8a34-2a2ae2dbcce4",
+      "name": "Google Analytics",
+      "category": "Analytics",
+      "cookieName": "_gid",
+      "domain": "google-analytics.com (3rd party) or advertiser's website domain (1st party)",
+      "description": "ID used to identify users for 24 hours after last activity",
+      "retentionPeriod": "24 hours",
+      "dataController": "Google",
+      "privacy": "https://privacy.google.com/take-control.html",
+      "wildcardMatch": 0
+    },
+    {
+      "id": "0d249cd5-ae35-4dbb-ad00-d5ca46948619",
+      "name": "Facebook",
+      "category": "Marketing",
+      "cookieName": "_fbp",
+      "domain": "facebook.com (3rd party)",
+      "description": "Used by Facebook to deliver a series of advertisement products such as real time bidding from third party advertisers",
+      "retentionPeriod": "4 months",
+      "dataController": "Facebook",
+      "privacy": "https://www.facebook.com/about/privacy/",
+      "wildcardMatch": 0
+    },
+    {
+      "id": "f6f65358-15e8-4dcc-9014-13ae87d0e880",
+      "name": "Google reCAPTCHA",
+      "category": "Functional",
+      "cookieName": "_GRECAPTCHA",
+      "domain": "google.com",
+      "description": "Google reCAPTCHA sets a necessary cookie (_GRECAPTCHA) when executed for the purpose of providing its risk analysis.",
+      "retentionPeriod": "179 days",
+      "dataController": "Google",
+      "privacy": "https://privacy.google.com/take-control.html",
+      "wildcardMatch": 0
+    }
+  ],
+  "updatedAt": 1636967682523
+}
