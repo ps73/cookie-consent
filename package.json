@@ -1,5 +1,5 @@
 {
-  "name": "cookie-consent",
+  "name": "simpler-cookie-consent",
   "version": "0.1.1-beta.0",
   "scripts": {
     "dev": "vite",
@@ -9,7 +9,10 @@
     "lint:staged": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --cache",
     "git-hooks:commit-msg": "commitlint --edit",
     "git-hooks:pre-commit": "lint-staged",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "preversion": "npm lint:staged .",
+    "version": "npm run build",
+    "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "exports": {
     "import": "./dist/cookieconsent.es.js",
