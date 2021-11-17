@@ -32,7 +32,7 @@ export function Panel() {
   const sp = useStore(showPanel);
   const st = s?.style || {};
   const { position: p, hideScroll: h } = st;
-  const c = `panel-container ${getPositionClass(p)} ${h && 'hide-scroll'}`;
+  const c = `panel-container ${getPositionClass(p)} ${h ? 'hide-scroll' : ''}`;
 
   const submit = (all = false) => {
     const cookies = activatedCoks.get();
