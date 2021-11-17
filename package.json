@@ -14,10 +14,6 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
-  "exports": {
-    "import": "./dist/cookieconsent.es.js",
-    "require": "./dist/cookieconsent.umd.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ps73/cookie-consent.git"
