@@ -6,7 +6,7 @@ import type {
   SavedObj,
   UsedCats,
 } from '@/types/settings';
-import { activatedCats, cookies, openPanel, setAcCok, store } from '@/store';
+import { activatedCats, activatedCoks, cookies, openPanel, setAcCok, store } from '@/store';
 import debug from '@/utils/debug';
 
 type SaveParams = {
@@ -108,11 +108,15 @@ export function save(p: SaveParams, disallow = false) {
   si(S_S, Date.now().toString(), exp);
   if (all) {
     si(S_ALL, 'true', exp);
-    store.get().categories.forEach(({ name }) => {
+    const st = store.get();
+    st.categories.forEach(({ name }) => {
       activatedCats.setKey(name, true);
     });
-  }
-  if (cookies) {
+    st.settings?.cookies.forEach((cok) => {
+      activatedCoks.setKey(cok.name, true);
+    });
+    si(S_COO, stringify(activatedCoks.get()), exp);
+  } else if (cookies) {
     si(S_COO, stringify(cookies), exp);
   }
 }
