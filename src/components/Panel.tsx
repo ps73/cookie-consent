@@ -34,17 +34,23 @@ export function Panel() {
   const { position: p, hideScroll: h } = st;
   const c = `panel-container ${getPositionClass(p)} ${h ? 'hide-scroll' : ''}`;
 
-  const submit = (all = false) => {
+  const submit = (all = false, disallowAll = false) => {
     const cookies = activatedCoks.get();
-    const sparams = { all, cookies };
+    let sparams = { all, cookies };
+    if (disallowAll) {
+      sparams = {
+        all: false,
+        cookies: {},
+      };
+    }
     setTimeout(
       () => {
         hidePanel();
       },
       all ? 150 : 0,
     );
-    save(sparams);
-    inject(sparams);
+    save(sparams, disallowAll);
+    if (!disallowAll) inject(sparams);
   };
 
   if (h) {
@@ -67,7 +73,7 @@ export function Panel() {
             </div>
             <View />
             <div className="action-buttons">
-              <Button p={st.sameButtonColor} onClick={() => submit()}>
+              <Button p={st.sameButtonColor} onClick={() => submit(false, true)}>
                 {s.content.disallow}
               </Button>
               <Button p={st.sameButtonColor} onClick={() => submit()}>

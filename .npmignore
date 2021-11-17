@@ -16,3 +16,4 @@ postcss.config.js
 .eslintcache
 commitlint.config.js
 .lintstagedrc
+src

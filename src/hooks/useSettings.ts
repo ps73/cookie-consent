@@ -99,10 +99,10 @@ export function reopen() {
   openPanel();
 }
 
-export function save(p: SaveParams) {
-  const exp = { expires: 365 };
+export function save(p: SaveParams, disallow = false) {
+  const exp = { expires: disallow ? 14 : 365 };
   const { settings } = store.get();
-  const { all } = p;
+  const { all, cookies } = p;
   if (!settings) throw error(E_NO_SET);
   if (settings.id) si(S_ID, settings.id, exp);
   si(S_S, Date.now().toString(), exp);
@@ -112,7 +112,6 @@ export function save(p: SaveParams) {
       activatedCats.setKey(name, true);
     });
   }
-  const cookies = activatedCoks.get();
   if (cookies) {
     si(S_COO, stringify(cookies), exp);
   }
