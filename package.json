@@ -10,7 +10,7 @@
     "git-hooks:commit-msg": "commitlint --edit",
     "git-hooks:pre-commit": "lint-staged",
     "prepare": "husky install",
-    "preversion": "npm lint:staged .",
+    "preversion": "npm run lint:staged .",
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
