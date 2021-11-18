@@ -100,14 +100,14 @@ export function reopen() {
 }
 
 export function save(p: SaveParams, disallow = false) {
-  const exp = { expires: disallow ? 14 : 365 };
+  const ca: C.CookieAttributes = { expires: disallow ? 14 : 365, sameSite: 'Strict' };
   const { settings } = store.get();
   const { all, cookies } = p;
   if (!settings) throw error(E_NO_SET);
-  if (settings.id) si(S_ID, settings.id, exp);
-  si(S_S, Date.now().toString(), exp);
+  if (settings.id) si(S_ID, settings.id, ca);
+  si(S_S, Date.now().toString(), ca);
   if (all) {
-    si(S_ALL, 'true', exp);
+    si(S_ALL, 'true', ca);
     const st = store.get();
     st.categories.forEach(({ name }) => {
       activatedCats.setKey(name, true);
@@ -115,9 +115,9 @@ export function save(p: SaveParams, disallow = false) {
     st.settings?.cookies.forEach((cok) => {
       activatedCoks.setKey(cok.name, true);
     });
-    si(S_COO, stringify(activatedCoks.get()), exp);
+    si(S_COO, stringify(activatedCoks.get()), ca);
   } else if (cookies) {
-    si(S_COO, stringify(cookies), exp);
+    si(S_COO, stringify(cookies), ca);
   }
 }
 
