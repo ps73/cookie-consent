@@ -165,12 +165,18 @@ $xl: 1440px;
       border: 0;
       border-radius: 6px;
       padding: 10px 12px;
-      font-size: .9rem;
+      font-size: .875rem;
       background: #D1D5DB;
+      align-items: center;
       justify-content: center;
       cursor: pointer;
       font-weight: 600;
       transition: all 200ms;
+      text-transform: none;
+
+      @media screen and (min-width: $md) {
+        font-size: .9rem;
+      }
 
       &.primary {
         background: #000;
@@ -313,8 +319,7 @@ $xl: 1440px;
 
         label {
           color: #000;
-          margin: 0;
-          margin-bottom: 0;
+          margin: 0 0 0 0;
         }
       }
 
@@ -374,6 +379,7 @@ $xl: 1440px;
         font-size: 0.875rem;
         font-weight: 500;
         user-select: none;
+        margin: 0 0 0 0;
       }
     }
 
@@ -381,6 +387,7 @@ $xl: 1440px;
       color: #4B5563;
       font-size: 0.75rem;
       margin-right: .5rem;
+      text-decoration: underline;
     }
   }
 }
