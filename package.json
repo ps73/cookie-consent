@@ -22,7 +22,8 @@
   "exports": {
     ".": {
       "import": "./dist/simpler-cookie-consent.es.js",
-      "require": "./dist/simpler-cookie-consent.umd.js"
+      "require": "./dist/simpler-cookie-consent.umd.js",
+      "style": "./dist/style.css"
     }
   },
   "repository": {
