@@ -15,8 +15,7 @@
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "files": [
-    "dist/*.js",
-    "dist/*.css"
+    "dist"
   ],
   "main": "./dist/simpler-cookie-consent.umd.js",
   "module": "./dist/simpler-cookie-consent.es.js",
