@@ -14,6 +14,17 @@
     "version": "npm run build",
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/simpler-cookie-consent.umd.js",
+  "module": "./dist/simpler-cookie-consent.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/simpler-cookie-consent.es.js",
+      "require": "./dist/simpler-cookie-consent.umd.js"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ps73/cookie-consent.git"

@@ -11,8 +11,9 @@ export default defineConfig({
     lib: {
       // @ts-ignore
       entry: path.resolve(__dirname, 'src/main.tsx'),
-      name: 'cookieconsent',
-      fileName: (format) => `cookieconsent.${format}.js`,
+      name: 'simpler-cookie-consent',
+      fileName: (format) => `simpler-cookie-consent.${format}.js`,
+      formats: ['es', 'cjs', 'umd'],
     },
     rollupOptions: {
       plugins: [

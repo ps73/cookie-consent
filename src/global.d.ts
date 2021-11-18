@@ -7,5 +7,6 @@ declare global {
     execScript?: (s: string) => void;
     ccReopen: () => void;
     ccReset: () => void;
+    renderCookieConsent: () => void;
   }
 }
