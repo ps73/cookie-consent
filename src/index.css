@@ -184,6 +184,7 @@ $xl: 1440px;
         background: transparent;
         font-weight: normal;
         text-decoration: underline;
+        color: #000;
       }
 
       &:not(.primary):not(.text):hover {
