@@ -53,8 +53,10 @@ export function Panel() {
     if (!disallowAll) inject(sparams);
   };
 
-  if (h) {
-    document.body.className += ' cc-hide-scroll';
+  if (h && sp) {
+    document.body.classList.add('cc-hide-scroll');
+  } else {
+    document.body.classList.remove('cc-hide-scroll');
   }
 
   return (

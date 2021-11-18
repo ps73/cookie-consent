@@ -1,5 +1,5 @@
 $primary: --cc-primary;
-$secondary: --cc-secondary;
+$primary-text: --cc-primary-text;
 $font: --cc-font-family;
 $focus: #94b1f0;
 
@@ -61,6 +61,8 @@ $xl: 1440px;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    font-family: sans-serif;
+    font-family: var($font, sans-serif);
     color: #000;
   }
 
@@ -182,7 +184,7 @@ $xl: 1440px;
         background: #000;
         color: #fff;
         background: var($primary, #000);
-        color: var($secondary, #fff);
+        color: var($primary-text, #fff);
       }
 
       &.text {

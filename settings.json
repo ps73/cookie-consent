@@ -1,5 +1,5 @@
 {
-  "id": "c81723892",
+  "id": "c817238412",
   "categories": {
     "Functional": "Erforderlich",
     "Analytics": "Statistiken",
@@ -11,22 +11,24 @@
     "paragraph": "Diese Seite nutzt Website-Tracking-Technologien von Dritten, um ihre Dienste anzubieten und diese stetig zu verbessern.",
     "categories": "Kategorien",
     "services": "Services",
-    "links": [["Impressum", "https://jp-labs.de/impressum"], ["Datenschutzerklärung", "https://jp-labs.de/datenschutz"]],
+    "links": [["Impressum", "/impressum"], ["Datenschutzerklärung", "/datenschutzerklaerung"]],
     "more": "Mehr anzeigen",
+    "moreShort": "Mehr",
+    "less": "Weniger anzeigen",
     "save": "Einstellungen speichern",
     "disallow": "Ablehnen",
     "allow": "Alles akzeptieren",
     "cookies": {
-      "name": "Name",
+      "name": "Cookie",
       "description": "Beschreibung",
       "retention": "Speicherdauer",
       "dataController": "Verarbeitendes Unternehmen",
       "domain": "Domain",
-      "privacySettings": "Datenschutz/Einstellungen",
+      "privacySettings": "Datenschutz",
       "notAvailable": "Keine Angabe"
     }
   },
-  "layout": {
+  "style": {
     "position": "br",
     "hideScroll": false,
     "sameButtonColor": false
@@ -36,10 +38,12 @@
       "id": "256c18e8-d881-11e9-8a34-2a2ae2dbcce8",
       "name": "Cookie Consent Settings",
       "category": "Functional",
-      "cookieName": "cc_settings",
-      "domain": "this website",
+      "cookieName": "_cc_s, _cc_i, _cc_acoo, _cc_aall",
+      "domain": "gridventures.de",
       "description": "Settings to inject cookies automatically after revisit until cookies were changed",
-      "retentionPeriod": "1 year"
+      "retentionPeriod": "1 year",
+      "dataController": "Diese Website",
+      "wildcardMatch": 0
     },
     {
       "id": "256c18e8-d881-11e9-8a34-2a2ae2dbcce4",
@@ -54,7 +58,7 @@
       "wildcardMatch": 0
     },
     {
-      "id": "256c1ae6-d881-11e9-8a34-2a2ae2dbcce4",
+      "id": "256c1ae6-d881-11e9-8a34-2a2ae2dbcce2",
       "name": "Google Analytics",
       "category": "Analytics",
       "cookieName": "_gid",
