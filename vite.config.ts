@@ -13,7 +13,7 @@ export default defineConfig({
       entry: path.resolve(__dirname, 'src/main.tsx'),
       name: 'simpler-cookie-consent',
       fileName: (format) => `simpler-cookie-consent.${format}.js`,
-      formats: ['es', 'cjs', 'umd'],
+      formats: ['es', 'umd'],
     },
     rollupOptions: {
       plugins: [

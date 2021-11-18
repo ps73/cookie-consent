@@ -61,6 +61,7 @@ $xl: 1440px;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    color: #000;
   }
 
   .consent-panel {
@@ -188,6 +189,7 @@ $xl: 1440px;
       &:not(.primary):not(.text):hover {
         background: #E5E7EB;
         opacity: 1;
+        color: #000;
       }
 
       &:hover {
@@ -242,7 +244,6 @@ $xl: 1440px;
 
       dl {
         font-size: 0.75rem;
-        color: #4B5563;
         margin-bottom: 0;
 
         .item {
@@ -251,6 +252,7 @@ $xl: 1440px;
 
         dt, dd {
           display: inline-flex;
+          color: #4B5563;
         }
         
         dt {
@@ -310,6 +312,8 @@ $xl: 1440px;
 
         label {
           color: #000;
+          margin: 0;
+          margin-bottom: 0;
         }
       }
 
