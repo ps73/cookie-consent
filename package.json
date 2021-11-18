@@ -15,15 +15,19 @@
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "files": [
-    "dist"
+    "dist/*.js",
+    "dist/*.css"
   ],
   "main": "./dist/simpler-cookie-consent.umd.js",
   "module": "./dist/simpler-cookie-consent.es.js",
   "exports": {
     ".": {
       "import": "./dist/simpler-cookie-consent.es.js",
-      "require": "./dist/simpler-cookie-consent.umd.js",
-      "style": "./dist/style.css"
+      "require": "./dist/simpler-cookie-consent.umd.js"
+    },
+    "./dist/style.css": {
+      "require": "./dist/style.css",
+      "import": "./dist/style.css"
     }
   },
   "repository": {
