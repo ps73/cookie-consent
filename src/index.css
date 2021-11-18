@@ -21,8 +21,8 @@ $xl: 1440px;
     height: -webkit-fill-available;
     z-index: 100000;
     pointer-events: none;
-    padding: 1rem;
-    padding-bottom: 1.5rem;
+    padding: 16px;
+    padding-bottom: 24px;
 
     &.hide-scroll {
       background: rgba(0,0,0,0.45);
@@ -30,19 +30,19 @@ $xl: 1440px;
     }
 
     @media screen and (min-width: $lg) {
-      padding: 1.5rem;
+      padding: 24px;
     }
 
     &.t {
-      /* top: 1rem; */
+      /* top: 16px; */
       align-items: flex-start;
     }
     &.b {
-      /* bottom: 1rem; */
+      /* bottom: 16px; */
       align-items: flex-end;
     }
     &.r {
-      /* right: 1rem; */
+      /* right: 16px; */
       justify-content: flex-end;
     }
     &.l {
@@ -71,7 +71,7 @@ $xl: 1440px;
     display: block;
     max-width: 550px;
     border-radius: 6px;
-    padding: 1rem 1rem 0;
+    padding: 16px 16px 0;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.12);
     background: #fff;
     pointer-events: auto;
@@ -79,7 +79,7 @@ $xl: 1440px;
     overflow-y: auto;
 
     @media screen and (min-width: $lg) {
-      padding: 1.5rem 1.5rem 0;
+      padding: 24px 24px 0;
     }
 
     h4,
@@ -89,12 +89,12 @@ $xl: 1440px;
     }
 
     h4 {
-      font-size: 1.125rem;
-      margin-bottom: 0.25rem;
+      font-size: 18px;
+      margin-bottom: 4px;
     }
 
     p {
-      font-size: .875rem;
+      font-size: 14px;
     }
 
     .action-buttons {
@@ -103,11 +103,11 @@ $xl: 1440px;
       flex-wrap: wrap;
       position: sticky;
       bottom: 0;
-      padding: .75rem 0 1rem;
+      padding: 12px 0 16px;
 
       button {
         display: flex;
-        margin-bottom: 0.5rem;
+        margin-bottom: 8px;
         flex-grow: 1;
         width: 100%;
 
@@ -128,7 +128,7 @@ $xl: 1440px;
   
           &:not(.main) {
             &:first-child {
-              margin-right: 0.5rem;
+              margin-right: 8px;
             }
           }
         }
@@ -147,17 +147,17 @@ $xl: 1440px;
           }
 
           &:first-child {
-            margin-right: 0.75rem !important;
+            margin-right: 12px !important;
           }
     
           &:last-child {
-            margin-left: 0.75rem;
+            margin-left: 12px;
           }
         }
       }
 
       @media screen and (min-width: $lg) {
-        padding: 1rem 0 1.5rem;
+        padding: 16px 0 24px;
       }
     }
 
@@ -165,7 +165,7 @@ $xl: 1440px;
       border: 0;
       border-radius: 6px;
       padding: 10px 12px;
-      font-size: .875rem;
+      font-size: 14px;
       background: #D1D5DB;
       align-items: center;
       justify-content: center;
@@ -175,7 +175,7 @@ $xl: 1440px;
       text-transform: none;
 
       @media screen and (min-width: $md) {
-        font-size: .9rem;
+        font-size: 15px;
       }
 
       &.primary {
@@ -210,9 +210,9 @@ $xl: 1440px;
     }
 
     .vhome {
-      margin-top: 0.75rem;
+      margin-top: 12px;
       button {
-        margin-bottom: 1.25rem;
+        margin-bottom: 20px;
       }
     }
 
@@ -221,14 +221,14 @@ $xl: 1440px;
 
       &:last-child {
         border-bottom: 0;
-        margin-bottom: 0.5rem;
+        margin-bottom: 8px;
       }
 
       .category-main {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0.5rem 0;
+        padding: 8px 0;
 
         button {
           display: inline-block;
@@ -247,10 +247,10 @@ $xl: 1440px;
 
     .service {
       /* margin-bottom_ */
-      padding: 0.75rem 1rem;
+      padding: 12px 16px;
 
       dl {
-        font-size: 0.75rem;
+        font-size: 12px;
         margin-bottom: 0;
 
         .item {
@@ -263,7 +263,7 @@ $xl: 1440px;
         }
         
         dt {
-          margin-right: 0.25rem;
+          margin-right: 4px;
           font-weight: 500;
 
           &::after {
@@ -284,7 +284,7 @@ $xl: 1440px;
     }
 
     .service-list {
-      padding: 0.25rem 0;
+      padding: 4px 0;
       .service {
         border-bottom: solid 1px #cfcfcf;
   
@@ -302,17 +302,17 @@ $xl: 1440px;
 
       &.sm {
         input{
-          height: 1.125rem;
-          width: 2rem;
+          height: 18px;
+          width: 32px;
 
           &::before {
-            height: 0.75rem;
-            width: 0.75rem;
+            height: 12px;
+            width: 12px;
           }
 
           &:checked {
             &::before {
-              transform: translateX(.875rem);
+              transform: translateX(14px);
             }
           }
         }
@@ -326,10 +326,10 @@ $xl: 1440px;
       input {
         margin: 0;
         appearance: none;
-        height: 1.5rem;
-        width: 2.5rem;
+        height: 24px;
+        width: 40px;
         background: #cfcfcf;
-        margin-right: 0.5rem;
+        margin-right: 8px;
         border-radius: 999px;
         position: relative;
         transition: opacity 200ms;
@@ -344,11 +344,11 @@ $xl: 1440px;
           position: absolute;
           left: 0;
           top: 0;
-          height: 1.125rem;
-          width: 1.125rem;
+          height: 18px;
+          width: 18px;
           background: #fff;
           border-radius: 999px;
-          margin: 0.1875rem;
+          margin: 3px;
           transition: transform 200ms;
           box-shadow: 0 1px 3px rgba(0,0,0,0.12);
         }
@@ -357,7 +357,7 @@ $xl: 1440px;
           background: var($primary, #000);
 
           &::before {
-            transform: translateX(1rem);
+            transform: translateX(16px);
           }
         }
 
@@ -376,7 +376,7 @@ $xl: 1440px;
       }
 
       label {
-        font-size: 0.875rem;
+        font-size: 14px;
         font-weight: 500;
         user-select: none;
         margin: 0 0 0 0;
@@ -385,8 +385,8 @@ $xl: 1440px;
 
     a.link {
       color: #4B5563;
-      font-size: 0.75rem;
-      margin-right: .5rem;
+      font-size: 12px;
+      margin-right: 8px;
       text-decoration: underline;
     }
   }
