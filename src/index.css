@@ -165,17 +165,17 @@ $xl: 1440px;
       border: 0;
       border-radius: 6px;
       padding: 10px 12px;
-      font-size: 14px;
+      font-size: 14px !important;
       background: #D1D5DB;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-weight: 600;
+      font-weight: 500;
       transition: all 200ms;
-      text-transform: none;
+      text-transform: none !important;
 
       @media screen and (min-width: $md) {
-        font-size: 15px;
+        font-size: 15px !important;
       }
 
       &.primary {
