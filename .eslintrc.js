@@ -7,8 +7,13 @@ module.exports = {
       jsx: true, // Allows for the parsing of JSX
     },
   },
-  extends: ['preact', 'plugin:@typescript-eslint/recommended', 'plugin:prettier/recommended'],
-  plugins: ['jsx-a11y'],
+  extends: [
+    'preact',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
+  ],
+  plugins: ['jsx-a11y', 'prettier'],
   rules: {
     // Place to specify ESLint rules. Can be used to overwrite rules specified from the extended configs
     // e.g. '@typescript-eslint/explicit-function-return-type': 'off',
