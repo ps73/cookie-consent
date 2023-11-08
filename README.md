@@ -340,6 +340,7 @@ If the User accepts one entry all entries for this service will be accepted.
 
 In this case just add a cookie information like the following:
 
+```json
 {
   "id": "256c1ae6-d881-11e9-8a34-2a2ae2dbcce4",
   "name": "My Service",
@@ -349,6 +350,7 @@ In this case just add a cookie information like the following:
   "dataController": "My Service",
   "privacy": "https://my-service.com/privacy"
 }
+```
 
 ## Setup Scripts
 
