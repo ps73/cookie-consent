@@ -19,7 +19,7 @@ Add following div somewhere to your dom or inside a component:
 
 ```html
 <div id="cc"></div>
-<script async src="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@0.1.1-beta.13/dist/simpler-cookie-consent.umd.js" onload="window.renderCookieConsent()"></script>
+<script async src="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/simpler-cookie-consent.umd.js" onload="window.renderCookieConsent()"></script>
 ```
 
 ## Configuration
