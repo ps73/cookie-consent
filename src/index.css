@@ -3,6 +3,7 @@ $primary-text: --cc-primary-text;
 $font: --cc-font-family;
 $focus: #94b1f0;
 
+$sm: 550px;
 $md: 768px;
 $lg: 1024px;
 $xl: 1440px;
@@ -21,12 +22,16 @@ $xl: 1440px;
     height: -webkit-fill-available;
     z-index: 100000;
     pointer-events: none;
-    padding: 16px;
+    padding: 0;
     padding-bottom: 24px;
 
     &.hide-scroll {
       background: rgba(0,0,0,0.45);
       pointer-events: auto;
+    }
+
+    @media screen and (min-width: $sm) {
+      padding: 16px;
     }
 
     @media screen and (min-width: $lg) {
@@ -72,7 +77,7 @@ $xl: 1440px;
     z-index: 100000;
     display: block;
     max-width: 550px;
-    border-radius: 6px;
+    border-radius: 0px;
     padding: 16px 16px 0;
     box-shadow: 0 1px 4px rgba(0,0,0,0.1), 0 1px 3px rgba(0,0,0,0.12);
     background: #fff;
@@ -80,17 +85,21 @@ $xl: 1440px;
     max-height: 85vh;
     overflow-y: auto;
 
+    @media screen and (min-width: $sm) {
+      border-radius: 6px;
+    }
+
     @media screen and (min-width: $lg) {
       padding: 24px 24px 0;
     }
 
     h4,
-    p {
+    p {
       margin: 0;
       line-height: 1.5;
     }
 
-    h4 {
+    h4 {
       font-size: 18px;
       margin-bottom: 4px;
     }
@@ -139,7 +148,7 @@ $xl: 1440px;
       @media screen and (min-width: 580px) {
         flex-direction: row;
 
-        button {
+        button {
           display: inline-flex;
           margin-bottom: 0;
 
@@ -177,7 +186,7 @@ $xl: 1440px;
       text-transform: none !important;
 
       @media screen and (min-width: $md) {
-        font-size: 15px !important;
+        font-size: 14px !important;
       }
 
       &.primary {

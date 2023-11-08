@@ -40,7 +40,14 @@ export function Panel() {
     if (disallowAll) {
       sparams = {
         all: false,
-        cookies: {},
+        cookies: {
+          ...cookies,
+          ...Object.fromEntries(
+            Object.keys(cookies).map((k) => {
+              return [k, false];
+            }),
+          ),
+        },
       };
     }
     setTimeout(
@@ -50,7 +57,24 @@ export function Panel() {
       all ? 150 : 0,
     );
     save(sparams, disallowAll);
-    if (!disallowAll) inject(sparams);
+    if (!disallowAll) {
+      inject({
+        ...sparams,
+        acceptedAt: Date.now(),
+      });
+    } else {
+      inject({
+        ...sparams,
+        cookies:
+          s?.cookies
+            .filter((c) => c.category === 'Functional')
+            .reduce<Record<string, boolean>>((a, c) => {
+              a[c.name] = true;
+              return a;
+            }, {}) || {},
+        acceptedAt: Date.now(),
+      });
+    }
   };
 
   if (h && sp) {

@@ -5,7 +5,7 @@ import './index.css';
 const renderCookieConsent = () => {
   const root = document.getElementById('cc');
   if (root) render(<App />, root);
-  else console.warn('No Div with id="cc" found.');
+  else console.warn('No Div with id="cc" or id="simpler-consent" found.');
 };
 
 window.renderCookieConsent = renderCookieConsent;

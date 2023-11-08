@@ -65,6 +65,13 @@ export function useSettings() {
   cookies.set(cs.cookies);
   debug.log('SETTINGS:', cs);
   debug.log('SAVED:', ss);
+  window.ccGetConsent = () => {
+    return {
+      all: ss.aall || false,
+      cookies: ss.acok || {},
+      acceptedAt: ss.sAt,
+    };
+  };
   if (
     (ss.sAt && cs.updatedAt && cs.updatedAt > ss.sAt) ||
     (ss.id && cs.id && ss.id !== cs.id) ||
@@ -79,10 +86,12 @@ export function useSettings() {
       setAcCok(key, ss.acok?.[key] || false);
     });
   }
-  inject({
+  const ucs = {
     all: ss.aall || false,
     cookies: ss.acok || {},
-  });
+    acceptedAt: ss.sAt || 0,
+  };
+  inject(ucs);
   return false;
 }
 
@@ -132,7 +141,7 @@ export function loadScript(url: string) {
   head.appendChild(script);
 }
 
-export function inject(p: SaveParams) {
+export function inject(p: SaveParams & { acceptedAt: number }) {
   let s: NodeListOf<HTMLScriptElement>;
   let sl: Array<HTMLScriptElement> = [];
   if (p.all) {
@@ -158,6 +167,10 @@ export function inject(p: SaveParams) {
       loadScript(script.src);
     }
   });
+  const event = new CustomEvent('cc-inject', {
+    detail: p,
+  });
+  window.dispatchEvent(event);
   window.ccReopen = function () {
     reopen();
   };

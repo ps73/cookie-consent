@@ -28,6 +28,7 @@ export function Services({ services, content, onChange, disabled }: ServicesProp
           disabled={disabled}
           service={s}
           active={acCoks[s.name] || false}
+          multiple={services.filter((s) => s.cookieName).length > 1}
           onChange={(b) => onActivate(s.name, b)}
         />
       ))}

@@ -6,23 +6,36 @@ type ServiceProps = {
   content: CookieConsentSettings['content']['cookies'];
   active: boolean;
   disabled?: boolean;
+  multiple?: boolean;
   onChange: (b: boolean) => void;
 };
 
-export function Service({ service, content, active, disabled, onChange }: ServiceProps) {
+export function Service({ service, content, active, disabled, multiple, onChange }: ServiceProps) {
   const s = service;
   const c = content;
+  const cless = !s.cookieName;
 
-  const items = [
+  let items = [
     [c.name, s.cookieName],
     [c.description, s.description],
     [c.retention, s.retentionPeriod],
     [c.dataController, s.dataController],
     [c.domain, s.domain],
     [c.privacySettings, s.privacy, 'link'],
-    ['Wildcard', s.wildcardMatch?.toString()],
+    [c.multiple || 'Multiple Cookies', multiple ? c.yes || 'YES' : c.no || 'NO'],
+    ['Wildcard', !!s.wildcardMatch],
     ['ID', s.id],
   ];
+
+  if (cless) {
+    items = [
+      [c.description, s.description],
+      [c.dataController, s.dataController],
+      [c.domain, s.domain],
+      [c.privacySettings, s.privacy, 'link'],
+      ['ID', s.id],
+    ];
+  }
 
   return (
     <div className="service">
@@ -33,8 +46,9 @@ export function Service({ service, content, active, disabled, onChange }: Servic
         {items.map(([l, v, a]) => (
           <div key={l} className="item">
             <dt>{l}</dt>
-            {!a && <dd>{v || c.notAvailable}</dd>}
-            {a === 'link' && v && v.indexOf('http') > -1 && (
+            {!a && typeof v !== 'boolean' && <dd>{v || c.notAvailable}</dd>}
+            {!a && typeof v === 'boolean' && <dd>{v ? c.yes || 'YES' : c.no || 'NO'}</dd>}
+            {a === 'link' && v && typeof v === 'string' && v.indexOf('http') > -1 && (
               <dd>
                 <a href={v} className="link" target="_blank" rel="noreferrer">
                   {v}

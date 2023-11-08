@@ -8,12 +8,12 @@ export type CookieSettings = {
   name: string;
   category: CookieCategories | string;
   domain?: string;
-  cookieName: string;
+  cookieName?: string;
   description?: string;
   retentionPeriod?: string;
   dataController?: string;
   privacy?: string;
-  wildcardMatch?: number;
+  wildcardMatch?: 0 | 1 | boolean;
 };
 
 export type PanelPosition = 'bc' | 'br' | 'bl' | 'cc' | 'tr' | 'tl' | 'tc' | undefined;
@@ -25,7 +25,7 @@ export type CookieConsentSettings = {
     paragraph: string;
     categories: string;
     services: string;
-    links: string[][];
+    links: [label: string, href: string][];
     more: string;
     moreShort: string;
     less: string;
@@ -40,6 +40,9 @@ export type CookieConsentSettings = {
       domain: string;
       privacySettings: string;
       notAvailable: string;
+      yes?: string;
+      no?: string;
+      multiple?: string;
     };
   };
   categories: CookieCategoriesObj;
