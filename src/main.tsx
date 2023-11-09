@@ -2,7 +2,7 @@ import { render } from 'preact';
 import { App } from './app';
 import './index.css';
 import { reopen, reset } from './hooks/useSettings';
-import { consentStore } from './store';
+import { consentStore, hasConsent } from './store';
 import type { CookieConsentSettings } from './types/settings';
 
 const mount = () => {
@@ -28,6 +28,9 @@ window.ccGetConsent = getConsent;
 
 window.ccConsentStore = consentStore;
 
+window.ccHasConsent = (name: string) => hasConsent(name).get();
+window.ccHasConsentStore = hasConsent;
+
 window.ccReopen = () => {
   reopen();
 };
@@ -36,6 +39,6 @@ window.ccReset = () => {
   reset();
 };
 
-export { mount, reopen, reset, getConsent, consentStore, setDebugLogs, setSettings };
+export { mount, reopen, reset, getConsent, consentStore, hasConsent, setDebugLogs, setSettings };
 
 export * from './types/settings';

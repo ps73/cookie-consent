@@ -74,3 +74,7 @@ export const consentStore = map<CookieConsent>({
   cookies: {},
   acceptedAt: null,
 });
+
+export const hasConsent = (name: string) => {
+  return computed(consentStore, (c) => c.cookies[name] === true || c.all === true);
+};

@@ -17,7 +17,7 @@ Add following div somewhere to your dom or inside a component:
 
 ```ts
 import type { CookieConsent, CookieConsentSettings } from 'simpler-cookie-consent';
-import { mount, reopen, reset, getConsent, consentStore, setDebugLogs } from 'simpler-cookie-consent';
+import { mount, reopen, reset, getConsent, consentStore, hasConsent, setDebugLogs } from 'simpler-cookie-consent';
 
 const mySettings: CookieConsentSettings = {
   //...
@@ -29,17 +29,26 @@ reopen(); // will reopen panel with saved consent settings
 reset(); // will reset all consent settings and reload page
 getConsent(); // will return current consent settings
 setDebugLogs(true); // will enable debug logs
+hasConsent('Google Analytics').get(); // will return nanostores computed boolean if consent was given for this service
 
 // listen to cookie changes via event listener
 window.addEventListener('cc-inject', (e: any) => {
   console.log('cc-inject', e.detail as CookieConsent);
 });
+
 // or subscribe to store changes
 const unsubscribe = consentStore.subscribe((c: CookieConsent) => {
   console.log('consent-change', c);
 });
 // to unsubscribe
 unsubscribe();
+
+// or subscribe for specific service
+const unsubscribe1 = hasConsent('Google Analytics').subscribe((c: boolean) => {
+  console.log('consent-change', c);
+});
+// to unsubscribe
+unsubscribe1();
 ```
 
 #### Typescript usage
@@ -413,8 +422,20 @@ Every script has to set type to "text/plain" and use a data-cc attribute which m
 window.addEventListener('cc-inject', (e: any) => {
   const details = e.detail as CookieConsent;
   // It is really important to check e.detail.all!
-  const myServiceAccepted = details.cookies['My Service'] || details.all;
+  const myServiceAccepted = window.ccHasConsent('Google Analytics');
 });
+
+// OR subscribe to store
+const unsubscribe = window.ccConsentStore.subscribe(() => {
+  const myServiceAccepted = window.ccHasConsent('Google Analytics');
+});
+
+// OR subscribe to specific service
+const unsubscribe1 = window.ccHasConsentStore('Google Analytics').subscribe((accepted) => {
+  const myServiceAccepted = accepted; // true or false
+});
+// to unsubscribe
+unsubscribe1();
 ```
 
 ## Global Methods
@@ -430,6 +451,10 @@ window.ccReopen();
 window.ccGetConsent();
 // Get user consent store, returns nanostores map instance
 window.ccConsentStore;
+// Check if user has given consent for a specific service
+window.ccHasConsent('Google Analytics');
+// Returns nanostores computed value
+window.ccHasConsentStore('Google Analytics');
 ```
 
 ## Customize Styling
