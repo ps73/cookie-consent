@@ -16,8 +16,13 @@ Add following div somewhere to your dom or inside a component:
 ```
 
 ```ts
-import type { CookieConsent } from 'simpler-cookie-consent';
+import type { CookieConsent, CookieConsentSettings } from 'simpler-cookie-consent';
 import { mount, reopen, reset, getConsent, consentStore, setDebugLogs } from 'simpler-cookie-consent';
+
+const mySettings: CookieConsentSettings = {
+  //...
+};
+setSettings(mySettings); // will update settings
 
 mount(); // mounts initial consent management, will open panel if no consent was given or settings were changed
 reopen(); // will reopen panel with saved consent settings
