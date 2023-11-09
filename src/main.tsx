@@ -9,6 +9,23 @@ const mount = () => {
   const root = document.getElementById('cc');
   if (root) render(<App />, root);
   else console.warn('No Div with id="cc" or id="simpler-consent" found.');
+  setWindowMethods();
+};
+
+const setWindowMethods = () => {
+  if (typeof window === 'undefined') return;
+  window.renderCookieConsent = mount;
+  window.mountCookieConsent = mount;
+  window.ccGetConsent = getConsent;
+  window.ccConsentStore = consentStore;
+  window.ccHasConsent = (name: string) => hasConsent(name).get();
+  window.ccHasConsentStore = hasConsent;
+  window.ccReopen = () => {
+    reopen();
+  };
+  window.ccReset = () => {
+    reset();
+  };
 };
 
 const getConsent = () => consentStore.get();
@@ -19,25 +36,12 @@ const setDebugLogs = (active: boolean) => {
 
 const setSettings = (settings: CookieConsentSettings) => {
   window.CC_SETTINGS = settings;
+  setWindowMethods();
 };
 
-window.renderCookieConsent = mount;
-window.mountCookieConsent = mount;
-
-window.ccGetConsent = getConsent;
-
-window.ccConsentStore = consentStore;
-
-window.ccHasConsent = (name: string) => hasConsent(name).get();
-window.ccHasConsentStore = hasConsent;
-
-window.ccReopen = () => {
-  reopen();
-};
-
-window.ccReset = () => {
-  reset();
-};
+if (typeof window !== 'undefined') {
+  setWindowMethods();
+}
 
 export { mount, reopen, reset, getConsent, consentStore, hasConsent, setDebugLogs, setSettings };
 
