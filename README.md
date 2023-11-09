@@ -17,7 +17,9 @@ Add following div somewhere to your dom or inside a component:
 
 ```ts
 import type { CookieConsent, CookieConsentSettings } from 'simpler-cookie-consent';
-import { mount, reopen, reset, getConsent, consentStore, hasConsent, setDebugLogs } from 'simpler-cookie-consent';
+import { mount, reopen, reset, setSettings, getConsent, consentStore, hasConsent, setDebugLogs } from 'simpler-cookie-consent';
+
+import 'simpler-cookie-consent/styles.css';
 
 const mySettings: CookieConsentSettings = {
   //...
@@ -66,6 +68,7 @@ declare global {
 ### CDN
 
 ```html
+<link href="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/style.css" rel="stylesheet">
 <div id="cc"></div>
 <script async src="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/simpler-cookie-consent.umd.js" onload="window.mountCookieConsent()"></script>
 ```
@@ -458,6 +461,16 @@ window.ccHasConsentStore('Google Analytics');
 ```
 
 ## Customize Styling
+
+```js
+// import in js
+import 'simpler-cookie-consent/styles.css';
+```
+
+```html
+<!-- or when using cdn package -->
+<link href="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/style.css" rel="stylesheet">
+```
 
 ```html
 <style>

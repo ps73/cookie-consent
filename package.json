@@ -29,6 +29,11 @@
       "require": "./dist/style.css",
       "import": "./dist/style.css",
       "types": "./dist/main.d.ts"
+    },
+    "./style.css": {
+      "require": "./dist/style.css",
+      "import": "./dist/style.css",
+      "types": "./dist/main.d.ts"
     }
   },
   "repository": {
