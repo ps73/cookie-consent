@@ -54,7 +54,7 @@ export function Panel() {
       () => {
         hidePanel();
       },
-      all ? 150 : 0,
+      all || disallowAll ? 150 : 0,
     );
     save(sparams, disallowAll);
     if (!disallowAll) {

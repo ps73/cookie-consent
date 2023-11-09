@@ -1,3 +1,5 @@
+import { MapStore } from 'nanostores';
+
 export type CookieCategories = 'Functional' | 'Analytics' | 'Marketing' | 'Preferences';
 export type CookieCategoriesObj = Record<CookieCategories | string, string>;
 export type SavedObj = Record<string, boolean>;
@@ -60,4 +62,31 @@ export type SavedCookieSettings = {
   acok: SavedObj | null;
   aall: boolean | null;
   sAt: number | null;
+};
+
+export interface GlobalCookieConsent {
+  CC_SETTINGS?: CookieConsentSettings;
+  CC_DEBUG?: boolean;
+  ccGetConsent: () => {
+    all: boolean;
+    cookies: Record<string, boolean>;
+    acceptedAt: number | null;
+  };
+  ccReopen: () => void;
+  ccReset: () => void;
+  /**
+   * @deprecated will be removed in future versions. Use mountCookieConsent instead.
+   */
+  renderCookieConsent: () => void;
+  mountCookieConsent: () => void;
+  ccConsentStore: MapStore<CookieConsent>;
+}
+
+export type SaveParams = {
+  all: boolean;
+  cookies: SavedObj;
+};
+
+export type CookieConsent = SaveParams & {
+  acceptedAt: number | null;
 };

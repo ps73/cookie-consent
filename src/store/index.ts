@@ -1,5 +1,6 @@
 import type {
   CookieCategories,
+  CookieConsent,
   CookieConsentSettings,
   CookieSettings,
   SavedObj,
@@ -64,3 +65,12 @@ export const catIsActive = (cat: CookieCategories | string) => {
   });
   return a;
 };
+
+/**
+ * @description nanostores based store for cookie consent
+ */
+export const consentStore = map<CookieConsent>({
+  all: false,
+  cookies: {},
+  acceptedAt: null,
+});

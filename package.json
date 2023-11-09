@@ -1,6 +1,6 @@
 {
   "name": "simpler-cookie-consent",
-  "version": "0.1.1-beta.13",
+  "version": "1.0.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,8 +10,7 @@
     "git-hooks:commit-msg": "commitlint --edit",
     "git-hooks:pre-commit": "lint-staged",
     "prepare": "husky install",
-    "preversion": "npm run lint:staged .",
-    "version": "npm run build",
+    "preversion": "npm run lint:staged . && npm run build",
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "files": [
@@ -19,14 +18,17 @@
   ],
   "main": "./dist/simpler-cookie-consent.umd.js",
   "module": "./dist/simpler-cookie-consent.es.js",
+  "types": "./dist/main.d.ts",
   "exports": {
     ".": {
       "import": "./dist/simpler-cookie-consent.es.js",
-      "require": "./dist/simpler-cookie-consent.umd.js"
+      "require": "./dist/simpler-cookie-consent.umd.js",
+      "types": "./dist/main.d.ts"
     },
     "./dist/style.css": {
       "require": "./dist/style.css",
-      "import": "./dist/style.css"
+      "import": "./dist/style.css",
+      "types": "./dist/main.d.ts"
     }
   },
   "repository": {
@@ -63,6 +65,7 @@
     "prettier": "^3.0.3",
     "rollup-plugin-visualizer": "^5.5.2",
     "typescript": "^5.2.2",
-    "vite": "^4.5.0"
+    "vite": "^4.5.0",
+    "vite-plugin-dts": "^3.6.3"
   }
 }

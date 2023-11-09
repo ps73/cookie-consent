@@ -15,11 +15,45 @@ Add following div somewhere to your dom or inside a component:
 <div id="cc"></div>
 ```
 
+```ts
+import type { CookieConsent } from 'simpler-cookie-consent';
+import { mount, reopen, reset, getConsent, consentStore, setDebugLogs } from 'simpler-cookie-consent';
+
+mount(); // mounts initial consent management, will open panel if no consent was given or settings were changed
+reopen(); // will reopen panel with saved consent settings
+reset(); // will reset all consent settings and reload page
+getConsent(); // will return current consent settings
+setDebugLogs(true); // will enable debug logs
+
+// listen to cookie changes via event listener
+window.addEventListener('cc-inject', (e: any) => {
+  console.log('cc-inject', e.detail as CookieConsent);
+});
+// or subscribe to store changes
+const unsubscribe = consentStore.subscribe((c: CookieConsent) => {
+  console.log('consent-change', c);
+});
+// to unsubscribe
+unsubscribe();
+```
+
+#### Typescript usage
+
+If you want to use you have to extend Window interface with the following:
+
+```ts
+import type { GlobalCookieConsent } from 'simpler-cookie-consent';
+
+declare global {
+  interface Window extends GlobalCookieConsent {}
+}
+```
+
 ### CDN
 
 ```html
 <div id="cc"></div>
-<script async src="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/simpler-cookie-consent.umd.js" onload="window.renderCookieConsent()"></script>
+<script async src="https://cdn.jsdelivr.net/npm/simpler-cookie-consent@latest/dist/simpler-cookie-consent.umd.js" onload="window.mountCookieConsent()"></script>
 ```
 
 ## Configuration
@@ -289,11 +323,11 @@ type CookieConsentSettings = {
     retentionPeriod?: string;
     dataController?: string;
     privacy?: string;
-    wildcardMatch?: number;
+    wildcardMatch?: 0 | 1 | boolean;
   }[];
   style?: {
     // b = bottom, c = center, t = top, r = right, l = left
-    position?: 'bc' | 'br' | 'bl' | 'cc' | 'tr' | 'tl' | 'tc';
+    position?: 'bc' | 'br' | 'bl' | 'cc' | 'tr' | 'tl' | 'tc' | undefined;
     // if page should be scrollable or not when consent panel is open
     hideScroll?: boolean;
     // if all buttons (cancel, accept, accept all) should use the same color
@@ -368,28 +402,18 @@ Every script has to set type to "text/plain" and use a data-cc attribute which m
 
 ### JavaScript
 
-```js
-window.addEventListener('cc-inject', (e) => {
-  // It is really important to check e.detail.all!
-  const myServiceAccepted = e.detail.cookies['My Service'] || e.detail.all;
-});
-```
-
 ```ts
-type CCInjectEventPayload = {
-  // ... Custom Event
-  detail: {
-    cookies: Record<string, boolean>;
-    all: boolean;
-    acceptedAt: number | null; 
-  };
-};
+window.addEventListener('cc-inject', (e: any) => {
+  const details = e.detail as CookieConsent;
+  // It is really important to check e.detail.all!
+  const myServiceAccepted = details.cookies['My Service'] || details.all;
+});
 ```
 
 ## Global Methods
 
 ```js
-window.renderCookieConsent();
+window.mountCookieConsent();
 // Reset all cookie settings
 window.ccReset();
 // Reopen panel
@@ -397,6 +421,8 @@ window.ccReopen();
 // Get user consent
 // Returns: { all: boolean, cookies: Record<string, boolean>; acceptedAt: number | null }
 window.ccGetConsent();
+// Get user consent store, returns nanostores map instance
+window.ccConsentStore;
 ```
 
 ## Customize Styling

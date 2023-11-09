@@ -1,3 +1,10 @@
-import CookieConsent from './main';
+import { consentStore, mount } from './main';
+import debug from './utils/debug';
 
-CookieConsent();
+mount();
+
+if (window.CC_DEBUG) {
+  consentStore.subscribe((s) => {
+    debug.log('ccConsentStore', s);
+  });
+}

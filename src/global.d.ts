@@ -1,17 +1,7 @@
-import { CookieConsentSettings } from './types/settings';
+import { GlobalCookieConsent } from './types/settings';
 
 declare global {
-  interface Window {
-    CC_SETTINGS?: CookieConsentSettings;
-    CC_DEBUG?: boolean;
+  interface Window extends GlobalCookieConsent {
     execScript?: (s: string) => void;
-    ccGetConsent: () => {
-      all: boolean;
-      cookies: Record<string, boolean>;
-      acceptedAt: number | null;
-    };
-    ccReopen: () => void;
-    ccReset: () => void;
-    renderCookieConsent: () => void;
   }
 }

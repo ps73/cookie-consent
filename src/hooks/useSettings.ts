@@ -1,18 +1,22 @@
 import C from 'js-cookie';
 import { E_NO_SET, S_ALL, S_COO, S_ID, S_S } from '@/constants';
 import type {
+  CookieConsent,
   CookieConsentSettings,
+  SaveParams,
   SavedCookieSettings,
-  SavedObj,
   UsedCats,
 } from '@/types/settings';
-import { activatedCats, activatedCoks, cookies, openPanel, setAcCok, store } from '@/store';
+import {
+  activatedCats,
+  activatedCoks,
+  consentStore,
+  cookies,
+  openPanel,
+  setAcCok,
+  store,
+} from '@/store';
 import debug from '@/utils/debug';
-
-type SaveParams = {
-  all: boolean;
-  cookies: SavedObj;
-};
 
 // utils
 const error = (e: string) => {
@@ -65,13 +69,6 @@ export function useSettings() {
   cookies.set(cs.cookies);
   debug.log('SETTINGS:', cs);
   debug.log('SAVED:', ss);
-  window.ccGetConsent = () => {
-    return {
-      all: ss.aall || false,
-      cookies: ss.acok || {},
-      acceptedAt: ss.sAt,
-    };
-  };
   if (
     (ss.sAt && cs.updatedAt && cs.updatedAt > ss.sAt) ||
     (ss.id && cs.id && ss.id !== cs.id) ||
@@ -115,9 +112,9 @@ export function save(p: SaveParams, disallow = false) {
   if (!settings) throw error(E_NO_SET);
   if (settings.id) si(S_ID, settings.id, ca);
   si(S_S, Date.now().toString(), ca);
+  const st = store.get();
   if (all) {
     si(S_ALL, 'true', ca);
-    const st = store.get();
     st.categories.forEach(({ name }) => {
       activatedCats.setKey(name, true);
     });
@@ -127,6 +124,19 @@ export function save(p: SaveParams, disallow = false) {
     si(S_COO, stringify(activatedCoks.get()), ca);
   } else if (cookies) {
     si(S_COO, stringify(cookies), ca);
+    Object.entries(cookies).forEach(([cname, active]) => {
+      activatedCoks.setKey(cname, active);
+    });
+  } else if (disallow) {
+    st.categories.forEach(({ name }) => {
+      if (name === 'Functional') activatedCats.setKey(name, true);
+      else activatedCats.setKey(name, false);
+    });
+    st.settings?.cookies.forEach((cok) => {
+      if (cok.category === 'Functional') activatedCoks.setKey(cok.name, true);
+      else activatedCoks.setKey(cok.name, false);
+    });
+    si(S_COO, stringify({}), ca);
   }
 }
 
@@ -141,7 +151,7 @@ export function loadScript(url: string) {
   head.appendChild(script);
 }
 
-export function inject(p: SaveParams & { acceptedAt: number }) {
+export function inject(p: CookieConsent) {
   let s: NodeListOf<HTMLScriptElement>;
   let sl: Array<HTMLScriptElement> = [];
   if (p.all) {
@@ -151,7 +161,7 @@ export function inject(p: SaveParams & { acceptedAt: number }) {
   } else {
     Object.keys(p.cookies).forEach((key) => {
       debug.log('INJECT:', key);
-      if (p.cookies[key]) {
+      if (p.cookies[key] === true) {
         s = document.querySelectorAll(`script[data-cc="${key}"]`);
         sl = [...sl, ...Array.from(s)];
       }
@@ -167,14 +177,9 @@ export function inject(p: SaveParams & { acceptedAt: number }) {
       loadScript(script.src);
     }
   });
+  consentStore.set(p);
   const event = new CustomEvent('cc-inject', {
     detail: p,
   });
   window.dispatchEvent(event);
-  window.ccReopen = function () {
-    reopen();
-  };
-  window.ccReset = function () {
-    reset();
-  };
 }
