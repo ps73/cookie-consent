@@ -44,7 +44,7 @@ unsubscribe();
 
 #### Typescript usage
 
-If you want to use you have to extend Window interface with the following:
+If you want to use window methods you have to extend Window interface with the following:
 
 ```ts
 import type { GlobalCookieConsent } from 'simpler-cookie-consent';
@@ -286,6 +286,8 @@ Can be imported:
 ```ts
 import type { CookieConsentSettings } from 'simple-cookie-consent';
 ```
+
+And will look like:
 
 ```ts
 type CookieCategories = 'Functional' | 'Analytics' | 'Marketing' | 'Preferences';
