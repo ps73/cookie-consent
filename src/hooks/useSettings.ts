@@ -151,6 +151,32 @@ export function loadScript(url: string) {
   head.appendChild(script);
 }
 
+function _dispatchEvent() {
+  const event = new CustomEvent('cc-inject', {
+    detail: consentStore.get(),
+  });
+  window.dispatchEvent(event);
+}
+
+export function _injectOne(name: string) {
+  const s: Array<HTMLScriptElement> = Array.from(
+    document.querySelectorAll(`script[data-cc="${name}"]`),
+  );
+  debug.log('INJECT:', name);
+  s.forEach((script) => {
+    if (script.textContent) {
+      script.type = 'text/javascript';
+      if (eval) eval(script.textContent);
+      else if (window.execScript) window.execScript(script.textContent);
+    } else if (script.src) {
+      // script.l;
+      loadScript(script.src);
+    }
+  });
+  consentStore.setKey(`cookies.${name}`, true);
+  _dispatchEvent();
+}
+
 export function inject(p: CookieConsent) {
   let s: NodeListOf<HTMLScriptElement>;
   let sl: Array<HTMLScriptElement> = [];
@@ -177,9 +203,8 @@ export function inject(p: CookieConsent) {
       loadScript(script.src);
     }
   });
-  consentStore.set(p);
-  const event = new CustomEvent('cc-inject', {
-    detail: p,
-  });
-  window.dispatchEvent(event);
+  consentStore.setKey('all', p.all);
+  consentStore.setKey('cookies', p.cookies);
+  consentStore.setKey('acceptedAt', p.acceptedAt || Date.now());
+  _dispatchEvent();
 }

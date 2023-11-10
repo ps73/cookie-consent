@@ -1,4 +1,4 @@
-import { MapStore, ReadableAtom } from 'nanostores';
+import { DeepMapStore, ReadableAtom } from 'nanostores';
 
 export type CookieCategories = 'Functional' | 'Analytics' | 'Marketing' | 'Preferences';
 export type CookieCategoriesObj = Record<CookieCategories | string, string>;
@@ -79,9 +79,10 @@ export interface GlobalCookieConsent {
    */
   renderCookieConsent: () => void;
   mountCookieConsent: () => void;
-  ccConsentStore: MapStore<CookieConsent>;
+  ccConsentStore: DeepMapStore<CookieConsent>;
   ccHasConsent: (name: string) => boolean;
   ccHasConsentStore: (name: string) => ReadableAtom<boolean>;
+  ccSetConsent: (name: string, active?: boolean) => void;
 }
 
 export type SaveParams = {

@@ -6,7 +6,7 @@ import type {
   SavedObj,
   UsedCats,
 } from '@/types/settings';
-import { map, atom, computed, action } from 'nanostores';
+import { map, atom, computed, action, deepMap } from 'nanostores';
 
 type Store = {
   settings: CookieConsentSettings | null;
@@ -69,7 +69,7 @@ export const catIsActive = (cat: CookieCategories | string) => {
 /**
  * @description nanostores based store for cookie consent
  */
-export const consentStore = map<CookieConsent>({
+export const consentStore = deepMap<CookieConsent>({
   all: false,
   cookies: {},
   acceptedAt: null,
