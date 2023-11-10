@@ -4,10 +4,11 @@ import preact from '@preact/preset-vite';
 import path from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 import dts from 'vite-plugin-dts';
+import replace from '@rollup/plugin-replace';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [preact()],
+  plugins: [preact(), dts()],
   build: {
     lib: {
       // @ts-ignore
@@ -18,7 +19,10 @@ export default defineConfig({
     },
     rollupOptions: {
       plugins: [
-        dts(),
+        replace({
+          'preventAssignment': true,
+          'process.env.NODE_ENV': JSON.stringify('production'),
+        }),
         visualizer({ filename: './.dev/built-analyzer.html', gzipSize: true, brotliSize: true }),
       ],
     },
