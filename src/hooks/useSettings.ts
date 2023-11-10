@@ -174,6 +174,7 @@ export function _injectOne(name: string) {
   });
   consentStore.setKey(`cookies.${name}`, true);
   _dispatchEvent();
+  save(consentStore.get(), false);
 }
 
 export function inject(p: CookieConsent) {
