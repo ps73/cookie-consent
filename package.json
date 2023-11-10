@@ -1,6 +1,6 @@
 {
   "name": "simpler-cookie-consent",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
