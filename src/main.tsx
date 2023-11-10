@@ -37,10 +37,12 @@ const setWindowMethods = () => {
 const getConsent = () => consentStore.get();
 
 const setDebugLogs = (active: boolean) => {
+  if (typeof window === 'undefined') return;
   window.CC_DEBUG = active;
 };
 
 const setSettings = (settings: CookieConsentSettings) => {
+  if (typeof window === 'undefined') return;
   window.CC_SETTINGS = settings;
   setWindowMethods();
 };

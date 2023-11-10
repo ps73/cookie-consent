@@ -3,7 +3,6 @@ import { E_NO_SET, S_ALL, S_COO, S_ID, S_S } from '@/constants';
 import type {
   CookieConsent,
   CookieConsentSettings,
-  SaveParams,
   SavedCookieSettings,
   UsedCats,
 } from '@/types/settings';
@@ -105,13 +104,13 @@ export function reopen() {
   openPanel();
 }
 
-export function save(p: SaveParams, disallow = false) {
+export function save(p: CookieConsent, disallow = false) {
   const ca: C.CookieAttributes = { expires: disallow ? 14 : 365, sameSite: 'Strict' };
   const { settings } = store.get();
   const { all, cookies } = p;
   if (!settings) throw error(E_NO_SET);
   if (settings.id) si(S_ID, settings.id, ca);
-  si(S_S, Date.now().toString(), ca);
+  si(S_S, (p.acceptedAt ?? settings.updatedAt ?? Date.now()).toString(), ca);
   const st = store.get();
   if (all) {
     si(S_ALL, 'true', ca);
@@ -205,6 +204,6 @@ export function inject(p: CookieConsent) {
   });
   consentStore.setKey('all', p.all);
   consentStore.setKey('cookies', p.cookies);
-  consentStore.setKey('acceptedAt', p.acceptedAt || Date.now());
+  consentStore.setKey('acceptedAt', p.acceptedAt ?? Date.now());
   _dispatchEvent();
 }

@@ -56,11 +56,18 @@ export function Panel() {
       },
       all || disallowAll ? 150 : 0,
     );
-    save(sparams, disallowAll);
+    const acceptedAt = s?.updatedAt ?? Date.now();
+    save(
+      {
+        ...sparams,
+        acceptedAt,
+      },
+      disallowAll,
+    );
     if (!disallowAll) {
       inject({
         ...sparams,
-        acceptedAt: Date.now(),
+        acceptedAt,
       });
     } else {
       inject({
@@ -72,7 +79,7 @@ export function Panel() {
               a[c.name] = true;
               return a;
             }, {}) || {},
-        acceptedAt: Date.now(),
+        acceptedAt,
       });
     }
   };

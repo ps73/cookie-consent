@@ -17,7 +17,7 @@ Add following div somewhere to your dom or inside a component:
 
 ```ts
 import type { CookieConsent, CookieConsentSettings } from 'simpler-cookie-consent';
-import { mount, reopen, reset, setSettings, getConsent, consentStore, hasConsent, setDebugLogs } from 'simpler-cookie-consent';
+import { mount, reopen, reset, setSettings, getConsent, consentStore, hasConsent, setDebugLogs, setConsent } from 'simpler-cookie-consent';
 
 import 'simpler-cookie-consent/styles.css';
 
@@ -32,6 +32,7 @@ reset(); // will reset all consent settings and reload page
 getConsent(); // will return current consent settings
 setDebugLogs(true); // will enable debug logs
 hasConsent('Google Analytics').get(); // will return nanostores computed boolean if consent was given for this service
+setConsent('Google Analytics'); // will set consent for this service and inject scripts
 
 // listen to cookie changes via event listener
 window.addEventListener('cc-inject', (e: any) => {
@@ -78,6 +79,9 @@ declare global {
 [Have a look at this cookie database](https://github.com/jkwakman/Open-Cookie-Database/blob/master/open-cookie-database.csv) if you need help to find the right information for your cookies.
 
 Always use category key "Functional" for essential cookies which are necessary for the website to function properly.
+
+> [!IMPORTANT]  
+> Every time you change something inside the array `settings.cookies` you should change `settings.updatedAt` to! Use milliseconds timestamp or growing number. This will automatically check if the settings were changed and will reopen the panel for users that already gave their consent before the changes were made.
 
 ### JavaScript
 
@@ -180,7 +184,7 @@ window.CC_SETTINGS = {
       "wildcardMatch": false
     }
   ],
-  "updatedAt": 1637138348746
+  "updatedAt": 1
 };
 ```
 
@@ -286,7 +290,7 @@ window.CC_SETTINGS = {
         "wildcardMatch": false
       }
     ],
-    "updatedAt": 1637138348746
+    "updatedAt": 1
   }
 </script>
 ```
@@ -458,6 +462,8 @@ window.ccConsentStore;
 window.ccHasConsent('Google Analytics');
 // Returns nanostores computed value
 window.ccHasConsentStore('Google Analytics');
+// Set consent for one service
+window.ccSetConsent('Google Analytics');
 ```
 
 ## Customize Styling
