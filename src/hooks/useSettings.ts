@@ -139,11 +139,16 @@ export function save(p: CookieConsent, disallow = false) {
   }
 }
 
-export function loadScript(url: string) {
+export function loadScript(url: string, attributes?: NamedNodeMap) {
   const head = document.getElementsByTagName('head')[0];
   const script = document.createElement('script');
   script.type = 'text/javascript';
   script.src = url;
+  if (attributes) {
+    Array.from(attributes).forEach((attr) => {
+      script.setAttribute(attr.name, attr.value);
+    });
+  }
   script.onload = () => {
     debug.log('loaded script');
   };
@@ -169,7 +174,7 @@ export function _injectOne(name: string) {
       else if (window.execScript) window.execScript(script.textContent);
     } else if (script.src) {
       // script.l;
-      loadScript(script.src);
+      loadScript(script.src, script.attributes);
     }
   });
   consentStore.setKey(`cookies.${name}`, true);
@@ -200,7 +205,7 @@ export function inject(p: CookieConsent) {
       else if (window.execScript) window.execScript(script.textContent);
     } else if (script.src) {
       // script.l;
-      loadScript(script.src);
+      loadScript(script.src, script.attributes);
     }
   });
   consentStore.setKey('all', p.all);
