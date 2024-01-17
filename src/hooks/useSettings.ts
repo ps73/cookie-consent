@@ -146,7 +146,9 @@ export function loadScript(url: string, attributes?: NamedNodeMap) {
   script.src = url;
   if (attributes) {
     Array.from(attributes).forEach((attr) => {
-      script.setAttribute(attr.name, attr.value);
+      if (attr.name !== 'data-cc' && attr.name !== 'src' && attr.name !== 'type') {
+        script.setAttribute(attr.name, attr.value);
+      }
     });
   }
   script.onload = () => {
