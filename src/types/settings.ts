@@ -27,7 +27,7 @@ export type CookieConsentSettings = {
     paragraph: string;
     categories: string;
     services: string;
-    links: [label: string, href: string][];
+    links: [label: string, href: string, target?: string | undefined][];
     more: string;
     moreShort: string;
     less: string;

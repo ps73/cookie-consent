@@ -98,8 +98,8 @@ export function Panel() {
             <h4>{s.content.title}</h4>
             <p>{s.content.paragraph}</p>
             <div>
-              {s.content.links.map(([l, href]) => (
-                <a class="link" key={l} href={href} target="_blank" rel="noreferrer">
+              {s.content.links.map(([l, href, target]) => (
+                <a class="link" key={l} href={href} target={target} rel="noreferrer">
                   {l}
                 </a>
               ))}

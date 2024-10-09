@@ -98,7 +98,7 @@ window.CC_SETTINGS = {
     "paragraph": "Diese Seite nutzt Website-Technologien von Dritten, um ihre Dienste anzubieten und diese stetig zu verbessern.",
     "categories": "Kategorien",
     "services": "Services",
-    "links": [["Impressum", "/impressum"], ["Datenschutzerklärung", "/datenschutz"]],
+    "links": [["Impressum", "/impressum", "_self"], ["Datenschutzerklärung", "/datenschutz", "_blank"]],
     "more": "Mehr anzeigen",
     "moreShort": "Mehr",
     "less": "Weniger anzeigen",
@@ -204,7 +204,7 @@ window.CC_SETTINGS = {
       "paragraph": "Diese Seite nutzt Website-Technologien von Dritten, um ihre Dienste anzubieten und diese stetig zu verbessern.",
       "categories": "Kategorien",
       "services": "Services",
-      "links": [["Impressum", "/impressum"], ["Datenschutzerklärung", "/datenschutz"]],
+      "links": [["Impressum", "/impressum", "_self"], ["Datenschutzerklärung", "/datenschutz", "_blank"]],
       "more": "Mehr anzeigen",
       "moreShort": "Mehr",
       "less": "Weniger anzeigen",
@@ -315,7 +315,7 @@ type CookieConsentSettings = {
     paragraph: string;
     categories: string;
     services: string;
-    links: [label: string, href: string][];
+    links: [label: string, href: string, target?: string | undefined][];
     more: string;
     moreShort: string;
     less: string;
