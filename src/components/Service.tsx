@@ -54,7 +54,7 @@ export function Service({ service, content, active, disabled, multiple, onChange
               (v.indexOf('http') > -1 || v.startsWith('/')) && (
                 <dd>
                   <a href={v} className="link" target="_blank" rel="noreferrer">
-                    {c.privacySettings} [{v}]
+                    {v}
                   </a>
                 </dd>
               )}
