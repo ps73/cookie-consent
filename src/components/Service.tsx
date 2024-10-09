@@ -48,13 +48,16 @@ export function Service({ service, content, active, disabled, multiple, onChange
             <dt>{l}</dt>
             {!a && typeof v !== 'boolean' && <dd>{v || c.notAvailable}</dd>}
             {!a && typeof v === 'boolean' && <dd>{v ? c.yes || 'YES' : c.no || 'NO'}</dd>}
-            {a === 'link' && v && typeof v === 'string' && v.indexOf('http') > -1 && (
-              <dd>
-                <a href={v} className="link" target="_blank" rel="noreferrer">
-                  {v}
-                </a>
-              </dd>
-            )}
+            {a === 'link' &&
+              v &&
+              typeof v === 'string' &&
+              (v.indexOf('http') > -1 || v.startsWith('/')) && (
+                <dd>
+                  <a href={v} className="link" target="_blank" rel="noreferrer">
+                    {c.privacySettings} [{v}]
+                  </a>
+                </dd>
+              )}
           </div>
         ))}
       </dl>
