@@ -43,7 +43,7 @@
   "dependencies": {
     "@nanostores/preact": "^0.5.0",
     "js-cookie": "^3.0.1",
-    "nanostores": "^0.11.4",
+    "nanostores": "^0.9.4",
     "preact": "^10.5.13"
   },
   "devDependencies": {
