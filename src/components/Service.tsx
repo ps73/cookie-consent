@@ -23,6 +23,7 @@ export function Service({ service, content, active, disabled, multiple, onChange
     [c.domain, s.domain],
     [c.privacySettings, s.privacy, 'link'],
     [c.multiple || 'Multiple Cookies', multiple ? c.yes || 'YES' : c.no || 'NO'],
+    [c.localStorage || 'LocalStorage', !!s.localStorageName],
     ['Wildcard', !!s.wildcardMatch],
     ['ID', s.id],
   ];
@@ -33,6 +34,7 @@ export function Service({ service, content, active, disabled, multiple, onChange
       [c.dataController, s.dataController],
       [c.domain, s.domain],
       [c.privacySettings, s.privacy, 'link'],
+      [c.localStorage || 'LocalStorage', !!s.localStorageName],
       ['ID', s.id],
     ];
   }

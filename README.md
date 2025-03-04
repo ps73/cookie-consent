@@ -2,6 +2,9 @@
 
 A serverless cookie-consent tool.
 
+> [!NOTE]
+> From 1.6.0 you can set `localStorageName` in the service settings and `localStorage` in the translation settings. This will enable the user to allow a localStorage value for the service. It also manages removal of the localStorage value when the service consent was reset.
+
 ## Installation
 
 ### NPM
@@ -28,7 +31,7 @@ setSettings(mySettings); // will update settings
 
 mount(); // mounts initial consent management, will open panel if no consent was given or settings were changed
 reopen(); // will reopen panel with saved consent settings
-reset(); // will reset all consent settings and reload page
+reset(); // will reset all consent settings, remove all cookies and localstorage items and reloads page
 getConsent(); // will return current consent settings
 setDebugLogs(true); // will enable debug logs
 hasConsent('Google Analytics').get(); // will return nanostores computed boolean if consent was given for this service
@@ -115,7 +118,8 @@ window.CC_SETTINGS = {
       "notAvailable": "Keine Angabe",
       "yes": "Ja",
       "no": "Nein",
-      "multiple": "Verwendet mehrere Cookies"
+      "multiple": "Verwendet mehrere Cookies",
+      "localStorage": "Verwendet LocalStorage"
     }
   },
   "style": {
@@ -182,6 +186,16 @@ window.CC_SETTINGS = {
       "dataController": "Google",
       "privacy": "https://privacy.google.com/take-control.html",
       "wildcardMatch": false
+    },
+    {
+      "id": "256c1ae6-d881-11e9-8a34-2a2ae2dbcce4",
+      "name": "My Service",
+      "category": "Preferences",
+      "domain": "my-service.com",
+      "description": "This service is used to embed a booking tool. It may tracks your IP address.",
+      "dataController": "My Service",
+      "localStorageName": "MyService",
+      "privacy": "https://my-service.com/privacy"
     }
   ],
   "updatedAt": 1
@@ -333,6 +347,7 @@ type CookieConsentSettings = {
       yes?: string;
       no?: string;
       multiple?: string;
+      localStorage?: string;
     };
   };
   categories: Record<CookieCategories | string, string>;
@@ -347,6 +362,7 @@ type CookieConsentSettings = {
     dataController?: string;
     privacy?: string;
     wildcardMatch?: 0 | 1 | boolean;
+    localStorageName?: string;
   }[];
   style?: {
     // b = bottom, c = center, t = top, r = right, l = left

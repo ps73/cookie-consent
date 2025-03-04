@@ -11,6 +11,7 @@ export type CookieSettings = {
   category: CookieCategories | string;
   domain?: string;
   cookieName?: string;
+  localStorageName?: string;
   description?: string;
   retentionPeriod?: string;
   dataController?: string;
@@ -45,6 +46,7 @@ export type CookieConsentSettings = {
       yes?: string;
       no?: string;
       multiple?: string;
+      localStorage?: string;
     };
   };
   categories: CookieCategoriesObj;

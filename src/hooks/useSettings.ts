@@ -91,13 +91,36 @@ export function useSettings() {
   return false;
 }
 
-export function reset() {
-  ri(S_ID);
-  ri(S_ALL);
-  ri(S_COO);
-  ri(S_S);
-  debug.log('RESET DONE. RELOAD.');
+function wlr() {
   window.location.reload();
+}
+
+export function reset() {
+  const s = store.get().settings;
+  if (!s) {
+    return wlr();
+  }
+  const cn = s.cookies.map((c) => c.cookieName?.replace(/\s/g, '').split(','));
+  const ln = s.cookies.map((c) => c.localStorageName?.replace(/\s/g, '').split(','));
+  if (cn) {
+    Object.entries(gi()).forEach(([k]) => {
+      const included = cn.some((cnn) => cnn?.includes(k));
+      if (included) {
+        ri(k);
+      }
+    });
+  }
+  if (ln) {
+    ln.forEach((lnn) => {
+      if (lnn) {
+        lnn.forEach((lnnn) => {
+          localStorage.removeItem(lnnn);
+        });
+      }
+    });
+  }
+  debug.log('RESET DONE. RELOAD.', cn);
+  wlr();
 }
 
 export function reopen() {

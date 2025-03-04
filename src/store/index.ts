@@ -6,7 +6,7 @@ import type {
   SavedObj,
   UsedCats,
 } from '@/types/settings';
-import { map, atom, computed, action, deepMap } from 'nanostores';
+import { map, atom, computed, deepMap } from 'nanostores';
 
 type Store = {
   settings: CookieConsentSettings | null;
@@ -45,16 +45,16 @@ export const changeView = (v: 'h' | 'd') => {
 export const openCat = (cat: string) => {
   openedCat.get() === cat ? openedCat.set(null) : openedCat.set(cat);
 };
-export const openPanel = action(showPanel, 'openPanel', () => {
+export const openPanel = () => {
   if (showPanel.get() === false) {
     showPanel.set(true);
   }
-});
-export const hidePanel = action(showPanel, 'hidePanel', () => {
+};
+export const hidePanel = () => {
   if (showPanel.get() === true) {
     showPanel.set(false);
   }
-});
+};
 
 // methods
 export const catIsActive = (cat: CookieCategories | string) => {
