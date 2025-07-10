@@ -3,7 +3,7 @@
   "version": "1.6.1",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && mv ./dist/style.css ./style.css",
+    "build": "tsc && vite build",
     "serve": "vite preview",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
     "lint:staged": "eslint --config ./.eslintrc.js --ignore-path ./.eslintignore --cache",
@@ -14,8 +14,7 @@
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "files": [
-    "dist",
-    "style.css"
+    "dist"
   ],
   "main": "./dist/simpler-cookie-consent.umd.js",
   "module": "./dist/simpler-cookie-consent.es.js",
@@ -32,8 +31,9 @@
       "types": "./dist/main.d.ts"
     },
     "./style.css": {
-      "require": "./style.css",
-      "import": "./style.css"
+      "require": "./dist/style.css",
+      "import": "./dist/style.css",
+      "types": "./dist/main.d.ts"
     }
   },
   "repository": {
