@@ -17,3 +17,4 @@ postcss.config.js
 commitlint.config.js
 .lintstagedrc
 src
+!style.css
