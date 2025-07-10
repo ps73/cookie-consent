@@ -8,3 +8,4 @@ lib
 *.html
 .vscode
 .eslintcache
+style.css
