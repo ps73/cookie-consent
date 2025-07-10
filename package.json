@@ -1,6 +1,6 @@
 {
   "name": "simpler-cookie-consent",
-  "version": "1.6.2",
+  "version": "1.6.0",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build && mv ./dist/style.css ./style.css",
@@ -14,7 +14,8 @@
     "postversion": "git push && git push --tags && npm publish && rm -rf ./dist"
   },
   "files": [
-    "dist"
+    "dist",
+    "style.css"
   ],
   "main": "./dist/simpler-cookie-consent.umd.js",
   "module": "./dist/simpler-cookie-consent.es.js",
