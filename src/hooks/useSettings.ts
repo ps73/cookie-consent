@@ -162,22 +162,38 @@ export function save(p: CookieConsent, disallow = false) {
   }
 }
 
-export function loadScript(url: string, attributes?: NamedNodeMap) {
-  const head = document.getElementsByTagName('head')[0];
+export function injectScriptFromElement(sourceScript: HTMLScriptElement) {
+  const head = document.head;
   const script = document.createElement('script');
+
   script.type = 'text/javascript';
-  script.src = url;
-  if (attributes) {
-    Array.from(attributes).forEach((attr) => {
-      if (attr.name !== 'data-cc' && attr.name !== 'src' && attr.name !== 'type') {
-        script.setAttribute(attr.name, attr.value);
-      }
-    });
+
+  // Attribute übernehmen (id, async, data-*, etc.)
+  Array.from(sourceScript.attributes).forEach((attr) => {
+    if (attr.name === 'data-cc') return; // dein Consent-Flag
+    if (attr.name === 'type') return; // du setzt es ja selbst
+    if (attr.name === 'src') return; // setzen wir unten explizit
+
+    script.setAttribute(attr.name, attr.value);
+  });
+
+  if (sourceScript.src) {
+    script.src = sourceScript.src;
+  } else if (sourceScript.textContent) {
+    // Inline-Script-Code übernehmen
+    script.text = sourceScript.textContent;
   }
+
   script.onload = () => {
     debug.log('loaded script');
   };
+
   head.appendChild(script);
+  try {
+    sourceScript.parentNode?.removeChild(sourceScript);
+  } catch (e) {
+    debug.error(e);
+  }
 }
 
 function _dispatchEvent() {
@@ -193,14 +209,7 @@ export function _injectOne(name: string) {
   );
   debug.log('INJECT:', name);
   s.forEach((script) => {
-    if (script.textContent) {
-      script.type = 'text/javascript';
-      if (eval) eval(script.textContent);
-      else if (window.execScript) window.execScript(script.textContent);
-    } else if (script.src) {
-      // script.l;
-      loadScript(script.src, script.attributes);
-    }
+    injectScriptFromElement(script);
   });
   consentStore.setKey(`cookies.${name}`, true);
   _dispatchEvent();
@@ -224,14 +233,7 @@ export function inject(p: CookieConsent) {
     });
   }
   sl.forEach((script) => {
-    if (script.textContent) {
-      script.type = 'text/javascript';
-      if (eval) eval(script.textContent);
-      else if (window.execScript) window.execScript(script.textContent);
-    } else if (script.src) {
-      // script.l;
-      loadScript(script.src, script.attributes);
-    }
+    injectScriptFromElement(script);
   });
   consentStore.setKey('all', p.all);
   consentStore.setKey('cookies', p.cookies);

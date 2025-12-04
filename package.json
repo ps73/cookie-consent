@@ -41,10 +41,10 @@
     "url": "https://github.com/ps73/cookie-consent.git"
   },
   "dependencies": {
-    "@nanostores/preact": "^0.5.0",
+    "@nanostores/preact": "^1.0.0",
     "js-cookie": "^3.0.1",
-    "nanostores": "^0.9.4",
-    "preact": "^10.5.13"
+    "nanostores": "^1.1.0",
+    "preact": "^10.28.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.2.0",
